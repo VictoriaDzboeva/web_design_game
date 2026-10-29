@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Клубничные облака</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="game-wrap">
+      
+      <!-- Игровое поле -->
+      <canvas id="game" width="900" height="480" aria-label="Игра Клубничные облака"></canvas>
+      
+      <!-- Счёт и рекорд -->
+      <div class="game-hud">
+        <span id="score">💗 0/3</span>
+        <span id="best">🏆 0</span>
+      </div>
+      
+      <!-- Кнопка меню -->
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="gameMenu">☰ Меню</button>
+      
+      <!-- Выпадающее меню -->
+      <div id="gameMenu" class="game-menu" hidden>
+        <strong>🎀 Меню игры</strong>
+        <button id="start">▶ Старт / продолжить</button>
+        <button id="pause">⏸ Пауза</button>
+        <button id="restart">↻ Заново</button>
+        <button id="closeMenu" class="close-menu">✕ Закрыть</button>
+      </div>
+      
+      <!-- Оверлей (стартовый экран, победа, поражение) -->
+      <div id="overlay" class="overlay">
+        <div class="modal">
+          <h1 id="gameTitle">🍓 Клубничные облака ☁️</h1>
+          <h2 id="message">Начнём приключение? ✨</h2>
+          <p id="details">Помоги зайке Лили собрать три сердечка и добраться до волшебного замка!</p>
+          
+          <!-- Подсказка по управлению -->
+          <p style="font-size:13px; color:#a7538a; margin-top:0; margin-bottom:16px;">
+            🎮 <b>Управление:</b> Стрелки (←/→) или A/D — движение. Space, W или ↑ — прыжок. 
+            На телефоне — экранные кнопки внизу.
+          </p>
+          
+          <button id="overlayBtn">Играть 💖</button>
+        </div>
+      </div>
+      
+      <!-- Экранные кнопки для телефона -->
+      <div class="touch">
+        <button data-control="left" aria-label="Влево">◀</button>
+        <button data-control="right" aria-label="Вправо">▶</button>
+        <button data-control="jump" class="jump" aria-label="Прыжок">⬆</button>
+      </div>
+      
+    </div>
+  </main>
+  
+  <!-- Подключение игры -->
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 20% 10%, #fff9e9, transparent 30%),
+              linear-gradient(135deg, #ffe4f2, #e6ddff 60%, #d9f9ff);
+  font-family: system-ui, 'Trebuchet MS', sans-serif;
+  color: #805075;
+  min-height: 100vh;
+}
+
+.shell {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  padding: clamp(4px, 1vw, 14px);
+  text-align: center;
+}
+
+.game-wrap {
+  position: relative;
+  overflow: hidden;
+  border: clamp(3px, .5vw, 7px) solid white;
+  border-radius: clamp(12px, 2vw, 26px);
+  box-shadow: 0 16px 35px #a87da84a;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #d9f5ff;
+}
+
+.game-hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.game-hud span {
+  background: #fff9ffdf;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 7px 13px;
+  font-weight: 800;
+  color: #a7538a;
+  box-shadow: 0 3px 10px #a87da833;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #71517b35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  backdrop-filter: blur(5px);
+}
+.overlay.hidden { display: none; }
+
+.modal {
+  max-width: 460px;
+  max-height: 100%;
+  overflow: auto;
+  background: #fff9fff0;
+  border: 4px solid #ffc6df;
+  border-radius: 28px;
+  padding: 20px;
+  box-shadow: 0 12px 30px #74526d55;
+  backdrop-filter: blur(5px);
+}
+
+.modal h1 {
+  font-size: clamp(22px, 3.5vw, 36px);
+  margin: 0 0 12px;
+  color: #ed72a4;
+  text-shadow: 0 2px 12px #ffd2e9;
+}
+.modal h2 { font-size: clamp(17px, 2.5vw, 24px); color: #dc68a0; margin: 0 0 8px; }
+.modal p { line-height: 1.5; margin: 8px 0 16px; }
+.controls-hint { font-size: 13px; color: #a7538a; margin-top: 0; margin-bottom: 16px; }
+
+button {
+  border: 0;
+  border-radius: 18px;
+  background: #fa92bb;
+  color: white;
+  font: 750 16px system-ui;
+  padding: 12px 17px;
+  box-shadow: 0 4px 0 #d56b9b;
+  cursor: pointer;
+  touch-action: none;
+  transition: filter .15s, transform .15s;
+}
+button:hover { filter: brightness(1.05); }
+button:active { transform: translateY(2px); box-shadow: 0 2px 0 #d56b9b; }
+
+.menu-toggle {
+  position: absolute; right: 12px; top: 12px; z-index: 5;
+  font-size: 14px; padding: 9px 14px;
+}
+
+.game-menu {
+  position: absolute; z-index: 6; top: 58px; right: 12px;
+  width: min(230px, calc(100% - 24px));
+  background: #fff9fff5; border: 3px solid #ffc6df;
+  border-radius: 20px; padding: 13px; box-shadow: 0 10px 30px #74526d55;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.game-menu[hidden] { display: none; }
+.game-menu strong { color: #ba6398; }
+.game-menu button { font-size: 14px; padding: 10px; }
+.game-menu #pause { background: #aa9be8; box-shadow: 0 4px 0 #8070c5; }
+.game-menu #restart { background: #81cfc8; box-shadow: 0 4px 0 #54aaa5; }
+.game-menu .close-menu { background: #c3a9c5; box-shadow: none; }
+
+.touch {
+  display: none; position: absolute; bottom: 12px; left: 12px; right: 12px;
+  justify-content: space-between; pointer-events: none;
+}
+.touch button { pointer-events: auto; min-width: 56px; min-height: 54px; font-size: 21px; opacity: .85; }
+.touch .jump { background: #ac9beb; margin-left: auto; }
+.touch button:nth-child(2) { margin-left: 8px; }
+
+@media (hover: none) and (pointer: coarse) { .touch { display: flex; } }
+
+@media (max-width: 520px) {
+  .shell { padding: 3px; }
+  .game-hud { top: 5px; left: 5px; gap: 4px; }
+  .game-hud span { font-size: 10px; padding: 3px 6px; }
+  .menu-toggle { top: 5px; right: 5px; font-size: 11px; padding: 5px 8px; }
+  .game-menu { top: 35px; right: 5px; }
+  .modal { padding: 10px; border-width: 2px; }
+  .modal p { font-size: 12px; margin: 4px 0 8px; }
+  .controls-hint { font-size: 11px; margin-bottom: 10px; }
+  .modal h1 { font-size: 19px; margin-bottom: 4px; }
+  .modal h2 { font-size: 15px; }
+  .modal button { padding: 8px 12px; font-size: 13px; }
+  .touch { bottom: 5px; left: 5px; right: 5px; }
+  .touch button { min-width: 43px; min-height: 38px; padding: 5px; font-size: 16px; }
+}
